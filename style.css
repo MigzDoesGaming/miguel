@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -100,12 +101,13 @@ body {
 }
 
 .section-title {
-    font-size: 4rem;
-    font-weight: 900;
+    font-family: 'Istok Web', sans-serif; 
+    font-size: 4.5rem; 
+    font-weight: 700;
     text-transform: lowercase;
-    text-align: left; /* Left side alignment */
+    text-align: left; /* Aligns to the left side */
     margin-bottom: 50px;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
     width: 100%;
 }
 
@@ -154,4 +156,5 @@ footer {
     .about-content { flex-direction: column; text-align: center; }
     .section-title { font-size: 3rem; }
 }
+
 
