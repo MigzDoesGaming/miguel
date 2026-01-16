@@ -68,6 +68,7 @@ body {
     max-width: 100%;
     display: block;
     border-radius: 15px; /* GIF rounded corners */
+    border: 2px solid black;
 }
 
 .about-text-block { max-width: 380px; text-align: left; }
@@ -144,3 +145,4 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
