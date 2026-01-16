@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollVal = window.scrollY;
         const winHeight = window.innerHeight;
         
-        // 1. Shoe Exit Logic
+        // Parallax and Blur for the Spline Shoe
         heroSection.style.transform = `translateY(-${scrollVal * 0.4}px)`;
         let shoeOpacity = 1 - (scrollVal / (winHeight * 0.5));
         splineHero.style.opacity = Math.max(0, shoeOpacity);
         splineHero.style.filter = `blur(${(scrollVal / winHeight) * 20}px)`;
 
-        // 2. Content Wrapper Entry (Blur + Opacity)
+        // Smooth Page Blur-Fade In
         const fadeStart = winHeight * 0.5; 
         const fadeEnd = winHeight * 1.2;
         let progress = (scrollVal - fadeStart) / (fadeEnd - fadeStart);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Observer for Portfolio titles/items
+    // Reveal elements as you scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
