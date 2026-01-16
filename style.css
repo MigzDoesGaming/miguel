@@ -98,11 +98,11 @@ body {
     /* APPLYING INTER FONT HERE */
     font-family: 'Inter', sans-serif;
     font-size: 4.5rem;
-    font-weight: 200; /* Extra Bold for the background style */
+    font-weight: 400; /* Extra Bold for the background style */
     white-space: nowrap;
     display: flex;
     margin: 15px 0; 
-    text-transform: uppercase;
+  
 }
 
 .left-to-right { animation: moveRight 45s linear infinite; }
@@ -147,4 +147,5 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
 
