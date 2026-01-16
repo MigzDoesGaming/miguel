@@ -97,7 +97,7 @@ body {
     font-weight: 900;
     white-space: nowrap;
     display: flex;
-    margin: 10px 0; /* Vertical spacing between lines */
+    margin: -5px 0; /* Vertical spacing between lines */
 }
 
 .left-to-right { animation: moveRight 45s linear infinite; }
@@ -144,3 +144,4 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
