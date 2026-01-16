@@ -1,3 +1,6 @@
+/* ADD THE IMPORT AT THE VERY TOP */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -32,8 +35,7 @@ body {
 .content-wrapper {
     position: relative;
     z-index: 10;
-    /* 150vh creates the 'breathing space' gap after the first page */
-    margin-top: 150vh; 
+    margin-top: 150vh; /* Breathing space for the shoe exit */
     background-color: #E8ECF4;
     box-shadow: 0 -30px 100px rgba(0,0,0,0.05);
 }
@@ -83,7 +85,7 @@ body {
     color: #444;
 }
 
-/* --- MARQUEE BACKGROUND --- */
+/* --- MARQUEE BACKGROUND (UPDATED FONT) --- */
 .marquee-background {
     position: absolute;
     width: 100%;
@@ -93,11 +95,14 @@ body {
 }
 
 .marquee-row {
+    /* APPLYING INTER FONT HERE */
+    font-family: 'Inter', sans-serif;
     font-size: 4.5rem;
-    font-weight: 900;
+    font-weight: 900; /* Extra Bold for the background style */
     white-space: nowrap;
     display: flex;
-    margin: -10px 0; /* Vertical spacing between lines */
+    margin: 15px 0; 
+    text-transform: uppercase;
 }
 
 .left-to-right { animation: moveRight 45s linear infinite; }
@@ -109,7 +114,6 @@ body {
 /* --- FADE EFFECTS --- */
 .fade-trigger {
     opacity: 0;
-    /* Rise effect instead of slide-from-left */
     transform: translateY(40px);
     transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -120,7 +124,6 @@ body {
 }
 
 .delay-1 { transition-delay: 0.3s; }
-.delay-2 { transition-delay: 0.5s; }
 
 /* --- PORTFOLIO --- */
 .portfolio-grid {
@@ -144,5 +147,3 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
-
-
