@@ -1,4 +1,4 @@
-/* RESET & GLOBAL */
+/* GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,30 +7,29 @@
 
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #E8ECF4; /* Light bluish-gray from design */
+    background-color: #E8ECF4;
     color: #333;
     overflow-x: hidden;
 }
 
-/* UTILITIES */
-.section {
-    min-height: 100vh;
+/* --- SECTION 1: HERO (Fixed/Sticky) --- */
+.hero {
+    position: sticky; /* Keeps it fixed while we scroll */
+    top: 0;
+    height: 100vh;
     width: 100%;
-    position: relative;
-    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Lowest layer */
     overflow: hidden;
 }
 
-/* --- SECTION 1: HERO --- */
-.hero {
+.hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    z-index: 10;
-    /* Sticky allows it to stay while we apply fade out effect in JS */
-    position: sticky; 
-    top: 0;
+    width: 100%;
 }
 
 .main-title {
@@ -39,7 +38,7 @@ body {
     text-align: center;
     line-height: 0.9;
     color: #4A4E5A;
-    margin-bottom: -50px; /* Overlap slightly with shoe */
+    margin-bottom: -50px;
     z-index: 2;
     pointer-events: none;
 }
@@ -52,22 +51,33 @@ body {
     z-index: 1;
 }
 
-iframe {
-    border: none;
+iframe { border: none; }
+
+/* --- CONTENT WRAPPER (Sits on top of Hero) --- */
+.content-wrapper {
+    position: relative;
+    z-index: 2; /* Higher than hero */
+    background-color: transparent; /* Allows us to see transitions */
 }
 
 /* --- SECTION 2: ABOUT --- */
+.section {
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
 .about {
-    background-color: #E8ECF4;
+    background-color: #E8ECF4; /* Solid background to cover the hero */
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    z-index: 20; /* Sit on top of hero when scrolling */
 }
 
-/* Marquee Background */
-.marquee-background {
+/* MARQUEE ANIMATIONS */
+.marquee-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -76,151 +86,138 @@ iframe {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
-    opacity: 0.05; /* Very subtle text like in image */
-    z-index: 0;
+    gap: 1.5rem;
+    opacity: 0.04; /* Subtle background text */
     pointer-events: none;
-    overflow: hidden;
+    z-index: 0;
 }
 
 .marquee-row {
     white-space: nowrap;
-    font-size: 3rem;
-    font-weight: bold;
-    color: #999;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #000;
     display: flex;
 }
 
-/* Animations for Text */
-.left-to-right {
-    animation: scrollRight 20s linear infinite;
+/* Left to Right vs Right to Left */
+.scroll-left { animation: slideLeft 25s linear infinite; }
+.scroll-right { animation: slideRight 25s linear infinite; }
+
+@keyframes slideLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 
-.right-to-left {
-    animation: scrollLeft 20s linear infinite;
+@keyframes slideRight {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
 }
 
-@keyframes scrollRight {
-    0% { transform: translateX(-20%); }
-    100% { transform: translateX(0%); }
-}
-
-@keyframes scrollLeft {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-20%); }
-}
-
-/* Character Card */
+/* CARD & CONTENT */
 .about-content {
-    z-index: 1;
+    z-index: 10;
     display: flex;
     align-items: center;
-    gap: 2rem;
-    background: transparent;
+    gap: 3rem;
+    flex-wrap: wrap; /* Good for mobile */
+    justify-content: center;
 }
 
 .card {
     background: white;
     padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    width: 300px;
-    height: 200px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    width: 320px;
+    height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .char-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Prevents stretching */
 }
 
 .about-text h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    text-transform: lowercase;
 }
+
 .about-text p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     max-width: 250px;
+    line-height: 1.4;
 }
 
 /* --- SECTION 3: PORTFOLIO --- */
 .portfolio {
     background-color: #E8ECF4;
-    z-index: 20;
     padding-top: 4rem;
 }
 
 .section-title {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     margin-left: 2rem;
+    font-weight: bold;
 }
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     padding: 0 2rem;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .project-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
+.project-item:hover { transform: translateY(-5px); }
 
 .thumb-gradient {
     width: 100%;
-    height: 200px;
+    height: 220px;
     border-radius: 8px;
-    /* Gradient mimicking your image */
-    background: radial-gradient(circle, rgba(169,235,229,1) 0%, rgba(97,149,216,1) 100%);
-}
-
-.project-item h3 {
-    font-size: 0.9rem;
+    background: radial-gradient(circle at center, #A9EBE5 0%, #6195D8 100%);
+    margin-bottom: 10px;
 }
 
 /* --- FOOTER --- */
 footer {
     display: flex;
     justify-content: space-between;
-    padding: 4rem 2rem;
+    padding: 5rem 3rem;
     background-color: #E8ECF4;
-    z-index: 20;
+    font-size: 0.85rem;
 }
+.footer-col h4 { margin-bottom: 1rem; font-weight: bold; }
+.footer-col p { color: #555; line-height: 1.6; }
 
-.footer-col h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.footer-col p {
-    font-size: 0.7rem;
-    color: #666;
-    max-width: 300px;
-}
-
-/* --- ANIMATION CLASSES (JS Triggers) --- */
-
-/* Initial State: Hidden and shifted Left */
+/* --- ANIMATIONS (Left-to-Center) --- */
 .fade-trigger {
     opacity: 0;
-    transform: translateX(-50px); /* Starts from left */
-    transition: all 1s ease-out;
+    transform: translateX(-60px); /* Start off-screen to left */
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease */
 }
 
-/* Active State: Visible and Centered */
 .fade-trigger.active {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Staggered Delays for grid items */
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .main-title { font-size: 2.5rem; }
+    .about-content { flex-direction: column; text-align: center; }
+}
