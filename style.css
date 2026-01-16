@@ -2,54 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&display=swap');
 
 /* 2. CORE RESET */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #E8ECF4;
     overflow-x: hidden;
     color: #1a1a1a;
 }
 
-/* --- HERO SECTION (SPLINE) --- */
+/* --- HERO SECTION --- */
 .hero-section {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: 1;
     background-color: #E8ECF4;
 }
-
 .spline-container { width: 100%; height: 100%; }
 
-.badge-hide {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 150px;
-    height: 45px;
-    background: #E8ECF4;
-    z-index: 5;
-}
-
-/* --- CONTENT WRAPPER (Fades in via JS) --- */
+/* --- CONTENT WRAPPER --- */
 .content-wrapper {
     position: relative;
     z-index: 10;
-    margin-top: 150vh; /* Breathing space for shoe exit */
+    margin-top: 150vh; 
     background-color: #E8ECF4;
-    
-    /* Initial state for Scroll Blur effect */
     opacity: 0;
     filter: blur(30px); 
-    
-    /* Softens the top "border" transition */
     box-shadow: 0 -120px 100px 30px #E8ECF4; 
     transition: filter 0.1s linear, opacity 0.1s linear;
 }
@@ -57,30 +36,25 @@ body {
 .section {
     min-height: 100vh;
     width: 100%;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    padding: 80px 0;
+    position: relative;
+    padding: 100px 0;
 }
 
 /* --- ABOUT SECTION --- */
 .about-content {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 60px;
-    z-index: 5; /* Sit above the tilted marquee */
+    z-index: 5;
     max-width: 1100px;
     padding: 0 40px;
 }
 
 .char-img {
-    width: auto;
-    height: auto;
-    max-width: 400px; /* Constraints image size */
-    display: block;
+    max-width: 400px;
     border-radius: 24px;
     border: 3px solid #000;
 }
@@ -89,107 +63,95 @@ body {
     font-size: 2.2rem;
     font-weight: 800;
     text-transform: lowercase;
-    letter-spacing: -1.5px;
     margin-bottom: 12px;
 }
 
 .bio-paragraph {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;     /* Size 18 per request */
-    font-weight: 500;    /* Medium weight per request */
+    font-size: 18px;
+    font-weight: 500;
     line-height: 1.5;
     color: #333;
     max-width: 450px;
 }
 
-/* --- TILTED MARQUEE BACKGROUND --- */
-
+/* --- TILTED MARQUEE --- */
 .marquee-background {
     position: absolute;
-    width: 180%; /* Wider to cover edges when tilted */
-    left: -40%;
-    top: 0;
-    transform: rotate(-40deg); /* 40 degree tilt */
+    width: 200%; 
+    left: -50%;
+    transform: rotate(-40deg);
     z-index: 1;
     pointer-events: none;
 }
 
 .marquee-row {
-    font-family: 'Inter', sans-serif;
-    font-size: 5rem;
+    font-size: 6rem;
     font-weight: 900;
     white-space: nowrap;
     display: flex;
-    margin: 5px 0;
     color: #000;
-    opacity: 0.06; /* Subtle watermark feel */
+    opacity: 0.05;
 }
 
-/* --- PORTFOLIO SECTION --- */
+/* --- PORTFOLIO SECTION (MATCHING SECOND PIC) --- */
 .portfolio {
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+}
+
+.portfolio-container {
+    width: 100%;
+    max-width: 1300px; /* Made even wider for bigger items */
+    padding: 0 50px;
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 4rem; /* Massive title */
     font-weight: 900;
     text-transform: lowercase;
-    margin-bottom: 60px;
-    letter-spacing: -2px;
+    text-align: left; /* Moves "portfolio" to the left side */
+    width: 100%;
+    margin-bottom: 40px;
+    letter-spacing: -4px;
 }
+
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2-column grid */
-    gap: 40px;
-    max-width: 1100px;
+    grid-template-columns: 1fr 1fr; /* Two big columns */
+    gap: 60px 50px; /* Large spacing */
     width: 100%;
-    padding: 0 40px;
 }
 
 .project-item {
     cursor: pointer;
-    text-decoration: none;
-    color: inherit;
 }
 
 .thumb {
     width: 100%;
-    aspect-ratio: 16 / 10;
-    border-radius: 20px;
+    aspect-ratio: 16 / 11; /* Bigger presence */
+    border-radius: 30px; /* Softer corners */
+    margin-bottom: 20px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     background: #ccd4e0;
-    margin-bottom: 15px;
-    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .project-item:hover .thumb {
-    transform: scale(1.02);
+    transform: scale(1.03) translateY(-10px);
 }
 
 .project-item h3 {
-    font-size: 1.4rem;
+    font-size: 1.8rem; /* Bigger project names */
     font-weight: 800;
     text-transform: lowercase;
+    margin-left: 5px;
 }
 
-.project-item p {
-    font-weight: 500;
-    color: #666;
-    font-size: 0.95rem;
-}
-
-/* --- ANIMATIONS --- */
-.left-to-right { animation: moveRight 50s linear infinite; }
-.right-to-left { animation: moveLeft 50s linear infinite; }
-
-@keyframes moveRight { from { transform: translateX(-40%); } to { transform: translateX(0); } }
-@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-40%); } }
-
-/* --- FADE IN OBSERVER CLASSES --- */
+/* --- FADE ANIMATIONS --- */
 .fade-trigger {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -203,25 +165,13 @@ body {
 
 /* --- FOOTER --- */
 footer { 
-    display: flex; 
-    justify-content: space-between; 
-    padding: 100px 60px; 
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    display: flex; justify-content: space-between; 
+    padding: 120px 60px; width: 100%; 
+    max-width: 1300px; margin: 0 auto; 
 }
 
-.footer-col h4 {
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-/* RESPONSIVE FOR MOBILE */
 @media (max-width: 900px) {
-    .about-content { flex-direction: column; text-align: center; }
     .portfolio-grid { grid-template-columns: 1fr; }
-    .marquee-row { font-size: 3rem; }
-    .content-wrapper { margin-top: 120vh; }
+    .section-title { font-size: 3rem; }
+    .about-content { flex-direction: column; text-align: center; }
 }
