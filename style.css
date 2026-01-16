@@ -12,43 +12,43 @@ body {
     overflow-x: hidden;
 }
 
-/* --- SECTION 1: HERO (Fixed/Sticky) --- */
+/* --- SECTION 1: HERO REVISION --- */
 .hero {
-    position: sticky; /* Keeps it fixed while we scroll */
+    position: sticky;
     top: 0;
     height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1; /* Lowest layer */
+    z-index: 1;
     overflow: hidden;
+    background-color: #E8ECF4;
 }
 
 .hero-content {
+    width: 100%;
+    max-width: 1200px; /* Limits how wide it gets on huge monitors */
+    padding: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
-.main-title {
-    font-size: 4rem;
-    text-transform: lowercase;
-    text-align: center;
-    line-height: 0.9;
-    color: #4A4E5A;
-    margin-bottom: -50px;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.spline-container {
+.spline-wrapper {
     width: 100%;
-    height: 60vh;
-    max-width: 800px;
+    /* This forces the container to stay in 1920x1080 proportion */
+    aspect-ratio: 16 / 9; 
     position: relative;
-    z-index: 1;
+}
+
+.spline-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 iframe { border: none; }
@@ -221,3 +221,4 @@ footer {
     .main-title { font-size: 2.5rem; }
     .about-content { flex-direction: column; text-align: center; }
 }
+
