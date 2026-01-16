@@ -115,7 +115,7 @@ body {
 .portfolio-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 90px 60px;
+    gap: 90px 90px;
 }
 
 .thumb {
@@ -156,6 +156,7 @@ footer {
     .about-content { flex-direction: column; text-align: center; }
     .section-title { font-size: 3rem; }
 }
+
 
 
 
