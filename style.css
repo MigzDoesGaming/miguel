@@ -81,7 +81,7 @@ body {
     font-weight: 400; /* Made this bold so you can actually see it */
     white-space: nowrap;
     display: flex;
-    margin: 10px 0;
+    margin: -15px 0;
     color: #000;
     opacity: 0.08; /* Subtle background look */
 }
@@ -123,4 +123,5 @@ body {
 }
 
 footer { display: flex; justify-content: space-between; padding: 6rem 4rem; }
+
 
