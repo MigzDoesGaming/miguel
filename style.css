@@ -35,9 +35,17 @@ body {
 .content-wrapper {
     position: relative;
     z-index: 10;
-    margin-top: 150vh; /* Breathing space for the shoe exit */
+    margin-top: 150vh; 
     background-color: #E8ECF4;
-    box-shadow: 0 -30px 100px rgba(0,0,0,0.05);
+    
+    /* INITIAL STATE FOR THE WHOLE PAGE */
+    opacity: 0;
+    filter: blur(30px); 
+    
+    /* This helps smooth out the top "border" look */
+    box-shadow: 0 -100px 100px 20px #E8ECF4; 
+    
+    transition: filter 0.1s linear, opacity 0.1s linear;
 }
 
 .section {
@@ -148,6 +156,7 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
 
 
 
