@@ -6,7 +6,6 @@ body {
     overflow-x: hidden;
 }
 
-/* --- HERO: FIXED FULL SCREEN --- */
 .hero-section {
     position: fixed;
     top: 0;
@@ -27,7 +26,6 @@ body {
     z-index: 5;
 }
 
-/* --- CONTENT WRAPPER --- */
 .content-wrapper {
     position: relative;
     z-index: 10;
@@ -55,26 +53,21 @@ body {
     padding: 0 40px;
 }
 
-/* UPDATED CARD STYLES */
 .card {
-    background: white;
-    /* Removed fixed width/height so it fits the image size */
-    padding: 20px; /* Adds the white frame around the image */
-    border-radius: 25px; /* Outer corner radius of the white frame */
+    background: none;
+    padding: 0;
+    box-shadow: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    max-width: 100%; /* Ensures it doesn't overflow on small screens */
 }
 
-/* UPDATED IMAGE STYLES */
 .char-img {
-    width: auto; /* True size */
-    height: auto; /* True size */
-    max-width: 100%; /* Ensures it fits inside the container */
+    width: auto;
+    height: auto;
+    max-width: 100%;
     display: block;
-    border-radius: 15px; /* Slight round corners ON THE IMAGE */
+    border-radius: 15px; /* GIF rounded corners */
 }
 
 .about-text-block { max-width: 380px; text-align: left; }
@@ -84,6 +77,7 @@ body {
     font-weight: 800;
     margin-bottom: 10px;
     letter-spacing: -1px;
+    text-transform: lowercase;
 }
 
 .bio-paragraph {
@@ -147,9 +141,6 @@ body {
 
 footer { display: flex; justify-content: space-between; padding: 6rem 4rem; width: 100%; }
 
-/* Mobile Stack */
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
-    .card { width: auto; padding: 15px; }
-    .about-text-block { text-align: center; }
 }
