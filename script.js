@@ -8,27 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollVal = window.scrollY;
         const winHeight = window.innerHeight;
         
-        // --- 1. SHOE EXIT LOGIC (Fades and moves out) ---
+        // --- 1. SHOE EXIT (First Page) ---
         heroSection.style.transform = `translateY(-${scrollVal * 0.4}px)`;
         let shoeOpacity = 1 - (scrollVal / (winHeight * 0.5));
         splineHero.style.opacity = Math.max(0, shoeOpacity);
         splineHero.style.filter = `blur(${(scrollVal / winHeight) * 15}px)`;
 
-        // --- 2. ABOUT SECTION ENTRANCE LOGIC (Blur Fade In) ---
-        // We calculate how much of the About section is visible
-        // scrollVal - winHeight tells us how far into the second page we are
-        const aboutStart = winHeight * 0.5; // Start effect halfway through scroll
-        const aboutProgress = (scrollVal - aboutStart) / (winHeight * 0.8);
-        const clampedProgress = Math.max(0, Math.min(1, aboutProgress));
+        // --- 2. ABOUT BLUR FADE (Second Page) ---
+        // This calculates progress specifically for the About section
+        const aboutStart = winHeight * 0.6; 
+        const aboutEnd = winHeight * 1.2;
+        
+        let aboutProgress = (scrollVal - aboutStart) / (aboutEnd - aboutStart);
+        let clampedAbout = Math.max(0, Math.min(1, aboutProgress));
 
         if (scrollVal > aboutStart) {
-            // Gradually reduce blur from 20px to 0px
-            let currentBlur = 20 - (clampedProgress * 20);
-            aboutContent.style.filter = `blur(${currentBlur}px)`;
-            aboutContent.style.opacity = clampedProgress;
-            
-            // Fade in the marquee text slightly slower
-            marquee.style.opacity = clampedProgress * 0.08;
+            let blurVal = 20 - (clampedAbout * 20);
+            aboutContent.style.filter = `blur(${blurVal}px)`;
+            aboutContent.style.opacity = clampedAbout;
+            marquee.style.opacity = clampedAbout * 0.08;
         } else {
             aboutContent.style.filter = `blur(20px)`;
             aboutContent.style.opacity = 0;
@@ -36,5 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // You can keep the IntersectionObserver for the Portfolio items below
+    // --- 3. PORTFOLIO FADE (Third Page) ---
+    // This brings back the portfolio items you saw disappear in the video
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-trigger').forEach(el => observer.observe(el));
 });
