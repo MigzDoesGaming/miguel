@@ -96,7 +96,7 @@ body {
     /* Spacing for better readability */
     line-height: 1.2;
     color: #444;
-    margin-top: 4px;
+    margin-top: 2.5px;
 }
 
 .left-to-right { animation: moveRight 45s linear infinite; }
@@ -136,6 +136,7 @@ body {
 }
 
 footer { display: flex; justify-content: space-between; padding: 6rem 4rem; }
+
 
 
 
