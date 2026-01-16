@@ -6,9 +6,9 @@ body {
     overflow-x: hidden;
 }
 
-/* --- FULL SCREEN SPLINE HERO --- */
+/* --- HERO: FIXED FULL SCREEN --- */
 .hero-section {
-    position: fixed; /* Stays in place while content scrolls over it */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -16,82 +16,97 @@ body {
     z-index: 1;
 }
 
-.spline-container {
-    width: 100%;
-    height: 100%;
-}
-
+.spline-container { width: 100%; height: 100%; }
 .badge-hide {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 150px;
     height: 45px;
-    background: #E8ECF4; /* Covers the Spline logo */
+    background: #E8ECF4;
     z-index: 5;
 }
 
-/* --- CONTENT ON TOP --- */
+/* --- CONTENT WRAPPER --- */
 .content-wrapper {
     position: relative;
     z-index: 10;
-    margin-top: 100vh; /* Pushes content down to start after hero */
-    background-color: #E8ECF4; /* Solid color hides the fixed Spline */
+    margin-top: 100vh;
+    background-color: #E8ECF4;
 }
 
 .section {
     min-height: 100vh;
-    padding: 4rem 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     position: relative;
-}
-
-/* MARQUEE TEXT (Alternating) */
-.marquee-background {
-    position: absolute;
-    width: 100%;
-    opacity: 0.05;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.marquee-row {
-    font-size: 4rem;
-    font-weight: 900;
-    white-space: nowrap;
-    display: flex;
-    margin-bottom: 1rem;
-}
-
-.left-to-right { animation: moveRight 30s linear infinite; }
-.right-to-left { animation: moveLeft 30s linear infinite; }
-
-@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ABOUT CARD */
-.about-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
-    z-index: 1;
+    overflow: hidden;
+}
+
+/* --- ABOUT SECTION (SIDE-BY-SIDE) --- */
+.about-content {
+    display: flex;
+    flex-direction: row; /* Card left, Text right */
+    align-items: center;
+    gap: 60px;
+    z-index: 2;
+    max-width: 1100px;
+    padding: 0 40px;
 }
 
 .card {
     background: white;
-    padding: 1rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    width: 320px;
-    height: 220px;
+    width: 550px; /* Wide card like your image */
+    height: 350px;
+    border-radius: 30px; /* Smooth rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
 }
 
-.char-img { width: 100%; height: 100%; object-fit: contain; }
+.char-img { width: 70%; height: auto; object-fit: contain; }
 
-/* PORTFOLIO */
+.about-text-block { max-width: 380px; text-align: left; }
+
+.name-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.bio-paragraph {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* --- MARQUEE BACKGROUND --- */
+.marquee-background {
+    position: absolute;
+    width: 100%;
+    opacity: 0.08;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.marquee-row {
+    font-size: 4.5rem;
+    font-weight: 900;
+    white-space: nowrap;
+    display: flex;
+    margin: -10px 0;
+}
+
+.left-to-right { animation: moveRight 45s linear infinite; }
+.right-to-left { animation: moveLeft 45s linear infinite; }
+
+@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* --- PORTFOLIO & FADE EFFECTS --- */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -102,25 +117,30 @@ body {
 
 .thumb {
     width: 100%;
-    height: 200px;
+    height: 220px;
     border-radius: 12px;
     background: radial-gradient(circle, #A9EBE5 0%, #6195D8 100%);
     margin-bottom: 10px;
 }
 
-/* FADE ANIMATIONS */
 .fade-trigger {
     opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.8s ease-out;
+    transform: translateX(-40px); /* Start slightly left */
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-trigger.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0); /* Slide into center */
 }
 
 .delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
 
-footer { display: flex; justify-content: space-between; padding: 4rem; }
+footer { display: flex; justify-content: space-between; padding: 6rem 4rem; width: 100%; }
+
+/* Mobile Stack */
+@media (max-width: 900px) {
+    .about-content { flex-direction: column; text-align: center; }
+    .card { width: 100%; height: auto; aspect-ratio: 1.5; }
+    .about-text-block { text-align: center; }
+}
