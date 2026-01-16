@@ -77,7 +77,7 @@ body {
 
 .marquee-row {
     font-family: 'Inter', sans-serif;
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 400; /* Made this bold so you can actually see it */
     white-space: nowrap;
     display: flex;
@@ -123,5 +123,6 @@ body {
 }
 
 footer { display: flex; justify-content: space-between; padding: 6rem 4rem; }
+
 
 
