@@ -87,6 +87,18 @@ body {
     opacity: 0.08; /* Subtle background look */
 }
 
+.bio-paragraph {
+    /* Font style updates */
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500; /* Medium weight */
+    
+    /* Spacing for better readability */
+    line-height: 1.6;
+    color: #444;
+    margin-top: 10px;
+}
+
 .left-to-right { animation: moveRight 45s linear infinite; }
 .right-to-left { animation: moveLeft 45s linear infinite; }
 
@@ -124,6 +136,7 @@ body {
 }
 
 footer { display: flex; justify-content: space-between; padding: 6rem 4rem; }
+
 
 
 
