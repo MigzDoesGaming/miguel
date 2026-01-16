@@ -127,7 +127,7 @@ body {
 }
 
 .project-item:hover .thumb { transform: scale(1.03) translateY(-10px); }
-.project-item h3 { font-size: 1.2rem; font-weight: 800; text-transform: lowercase; }
+.project-item h3 { font-size: 1.2rem; font-weight: 600; text-transform: lowercase; }
 
 /* --- ANIMATIONS --- */
 @keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
@@ -156,6 +156,7 @@ footer {
     .about-content { flex-direction: column; text-align: center; }
     .section-title { font-size: 3rem; }
 }
+
 
 
 
