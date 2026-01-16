@@ -14,10 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
         splineHero.style.filter = `blur(${(scrollVal / winHeight) * 20}px)`;
 
         // 2. Content Wrapper Entry (Blur + Opacity)
-        // Adjust these numbers if the "breathing space" feels too long or short
         const fadeStart = winHeight * 0.5; 
         const fadeEnd = winHeight * 1.2;
-        
         let progress = (scrollVal - fadeStart) / (fadeEnd - fadeStart);
         let clamped = Math.max(0, Math.min(1, progress));
 
@@ -30,12 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Portfolio & Footer Observers
+    // 3. Observer for Portfolio titles/items
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
 
