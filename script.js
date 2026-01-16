@@ -1,32 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const hero = document.querySelector('.hero-section');
     const splineHero = document.getElementById('spline-hero');
+    const heroSection = document.querySelector('.hero-section');
 
     window.addEventListener('scroll', () => {
         const scrollVal = window.scrollY;
         const winHeight = window.innerHeight;
-        const progress = Math.min(scrollVal / winHeight, 1);
-
-        // 1. FADE OUT: Starts immediately, gone by 60% scroll
-        let opacity = 1 - (progress / 0.6);
-        splineHero.style.opacity = Math.max(0, opacity);
-
-        // 2. SCALE & BLUR: The shoe 'recedes' and softens
-        let scale = 1 - (progress * 0.2); // Shrinks slightly
-        let blur = progress * 10;        // Blurs up to 10px
         
-        hero.style.transform = `scale(${Math.max(0.8, scale)})`;
-        hero.style.filter = `blur(${blur}px)`;
+        // 1. Move the shoe UP as you scroll (Parallax)
+        // This makes it look like the shoe is exiting the top of the screen
+        heroSection.style.transform = `translateY(-${scrollVal * 0.5}px)`;
 
-        // 3. CLEANUP: Hide completely when hidden by the 'curtain'
-        if (progress >= 1) {
-            hero.style.display = 'none';
-        } else {
-            hero.style.display = 'block';
-        }
+        // 2. Faster Fade Out
+        // The shoe will now be completely gone by 40% of the scroll
+        let opacity = 1 - (scrollVal / (winHeight * 0.4));
+        splineHero.style.opacity = Math.max(0, opacity);
+        
+        // 3. Optional Blur for smoothness
+        let blurVal = (scrollVal / winHeight) * 15;
+        splineHero.style.filter = `blur(${blurVal}px)`;
     });
 
-    // Intersection Observer for About Content slide-in
+    // Keep your existing Intersection Observer for the fade-triggers
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
