@@ -58,11 +58,6 @@ body {
     z-index: 2;
     max-width: 1100px;
     padding: 0 40px;
-    
-    /* These initial states allow the JS to take over */
-    opacity: 0;
-    filter: blur(20px);
-    transition: filter 0.1s linear, opacity 0.1s linear;
 }
 
 .char-img {
@@ -153,6 +148,7 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
 
 
 
