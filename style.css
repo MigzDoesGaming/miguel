@@ -71,6 +71,7 @@ body {
     position: absolute;
     width: 100%;
     /* This will be the FINAL opacity after scroll */
+    transform: rotate(-40deg);
     z-index: 1;
     pointer-events: none;
 }
@@ -123,6 +124,7 @@ body {
 }
 
 footer { display: flex; justify-content: space-between; padding: 6rem 4rem; }
+
 
 
 
