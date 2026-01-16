@@ -101,7 +101,13 @@ body {
     font-weight: 900;
     white-space: nowrap;
     display: flex;
-    margin: -10px 0;
+    
+    /* ADJUST THIS VALUE FOR VERTICAL SPACING */
+    /* Negative values bring rows closer together, positive pushes them apart */
+    margin: 5px 0; 
+    
+    color: #999; /* Adjust color if needed */
+    text-transform: uppercase; /* Makes it look more like a background pattern */
 }
 
 .left-to-right { animation: moveRight 45s linear infinite; }
@@ -145,4 +151,5 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
 
