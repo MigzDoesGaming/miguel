@@ -1,13 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+/* 1. IMPORT GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #E8ECF4;
-    overflow-x: hidden;
+/* 2. CORE RESET */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
+body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #E8ECF4;
+    overflow-x: hidden;
+    color: #1a1a1a;
+}
+
+/* --- HERO SECTION (SPLINE) --- */
 .hero-section {
     position: fixed;
     top: 0;
@@ -20,33 +28,50 @@ body {
 
 .spline-container { width: 100%; height: 100%; }
 
+.badge-hide {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 45px;
+    background: #E8ECF4;
+    z-index: 5;
+}
+
+/* --- CONTENT WRAPPER (Fades in via JS) --- */
 .content-wrapper {
     position: relative;
     z-index: 10;
-    margin-top: 150vh; 
+    margin-top: 150vh; /* Breathing space for shoe exit */
     background-color: #E8ECF4;
+    
+    /* Initial state for Scroll Blur effect */
     opacity: 0;
     filter: blur(30px); 
-    box-shadow: 0 -100px 100px 20px #E8ECF4; 
+    
+    /* Softens the top "border" transition */
+    box-shadow: 0 -120px 100px 30px #E8ECF4; 
     transition: filter 0.1s linear, opacity 0.1s linear;
 }
 
 .section {
     min-height: 100vh;
+    width: 100%;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 80px 0;
 }
 
-/* --- ABOUT --- */
+/* --- ABOUT SECTION --- */
 .about-content {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 60px;
-    z-index: 2;
+    z-index: 5; /* Sit above the tilted marquee */
     max-width: 1100px;
     padding: 0 40px;
 }
@@ -54,62 +79,118 @@ body {
 .char-img {
     width: auto;
     height: auto;
-    max-width: 100%;
+    max-width: 400px; /* Constraints image size */
     display: block;
-    border-radius: 15px;
-    border: 2px solid black;
+    border-radius: 24px;
+    border: 3px solid #000;
 }
 
 .name-title {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 800;
     text-transform: lowercase;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
 }
 
-/* --- MARQUEE --- */
+.bio-paragraph {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;     /* Size 18 per request */
+    font-weight: 500;    /* Medium weight per request */
+    line-height: 1.5;
+    color: #333;
+    max-width: 450px;
+}
+
+/* --- TILTED MARQUEE BACKGROUND --- */
+
 .marquee-background {
     position: absolute;
-    width: 100%;
-    /* This will be the FINAL opacity after scroll */
-    transform: rotate(-40deg);
+    width: 180%; /* Wider to cover edges when tilted */
+    left: -40%;
+    top: 0;
+    transform: rotate(-40deg); /* 40 degree tilt */
     z-index: 1;
     pointer-events: none;
 }
 
 .marquee-row {
     font-family: 'Inter', sans-serif;
-    font-size: 4rem;
-    font-weight: 400; /* Made this bold so you can actually see it */
+    font-size: 5rem;
+    font-weight: 900;
     white-space: nowrap;
     display: flex;
-    margin: -10px 0;
+    margin: 5px 0;
     color: #000;
-    opacity: 0.08; /* Subtle background look */
+    opacity: 0.06; /* Subtle watermark feel */
 }
 
-.bio-paragraph {
-    /* Font style updates */
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    font-weight: 500; /* Medium weight */
-    
-    /* Spacing for better readability */
-    line-height: 1.2;
-    color: #444;
-    margin-top: 2.5px;
+/* --- PORTFOLIO SECTION --- */
+.portfolio {
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.left-to-right { animation: moveRight 45s linear infinite; }
-.right-to-left { animation: moveLeft 45s linear infinite; }
+.section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: lowercase;
+    margin-bottom: 60px;
+    letter-spacing: -2px;
+}
 
-@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+    gap: 40px;
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 40px;
+}
 
-/* --- FADES --- */
+.project-item {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 20px;
+    background: #ccd4e0;
+    margin-bottom: 15px;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.project-item:hover .thumb {
+    transform: scale(1.02);
+}
+
+.project-item h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: lowercase;
+}
+
+.project-item p {
+    font-weight: 500;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* --- ANIMATIONS --- */
+.left-to-right { animation: moveRight 50s linear infinite; }
+.right-to-left { animation: moveLeft 50s linear infinite; }
+
+@keyframes moveRight { from { transform: translateX(-40%); } to { transform: translateX(0); } }
+@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-40%); } }
+
+/* --- FADE IN OBSERVER CLASSES --- */
 .fade-trigger {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-trigger.active {
@@ -117,30 +198,30 @@ body {
     transform: translateY(0);
 }
 
-.delay-1 { transition-delay: 0.3s; }
-.delay-2 { transition-delay: 0.5s; }
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+/* --- FOOTER --- */
+footer { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 100px 60px; 
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.thumb {
-    width: 100%;
-    height: 220px;
-    border-radius: 12px;
-    background: radial-gradient(circle, #A9EBE5 0%, #6195D8 100%);
+.footer-col h4 {
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
 }
 
-footer { display: flex; justify-content: space-between; padding: 6rem 4rem; }
-
-
-
-
-
-
-
-
+/* RESPONSIVE FOR MOBILE */
+@media (max-width: 900px) {
+    .about-content { flex-direction: column; text-align: center; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .marquee-row { font-size: 3rem; }
+    .content-wrapper { margin-top: 120vh; }
+}
