@@ -1,211 +1,118 @@
-/* GLOBAL RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #E8ECF4;
-    color: #333;
     overflow-x: hidden;
 }
 
-/* --- SECTION 1: HERO REVISION --- */
-.hero {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    overflow: hidden;
-    background-color: #E8ECF4;
-}
-
-.hero-content {
-    width: 100%;
-    max-width: 1200px; /* Limits how wide it gets on huge monitors */
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.spline-wrapper {
-    width: 100%;
-    /* This forces the container to stay in 1920x1080 proportion */
-    aspect-ratio: 16 / 9; 
-    position: relative;
-}
-
-.spline-wrapper iframe {
-    position: absolute;
+/* --- FULL SCREEN SPLINE HERO --- */
+.hero-section {
+    position: fixed; /* Stays in place while content scrolls over it */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
 }
 
-iframe { border: none; }
+.spline-container {
+    width: 100%;
+    height: 100%;
+}
 
-/* --- CONTENT WRAPPER (Sits on top of Hero) --- */
+.badge-hide {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 45px;
+    background: #E8ECF4; /* Covers the Spline logo */
+    z-index: 5;
+}
+
+/* --- CONTENT ON TOP --- */
 .content-wrapper {
     position: relative;
-    z-index: 2; /* Higher than hero */
-    background-color: transparent; /* Allows us to see transitions */
+    z-index: 10;
+    margin-top: 100vh; /* Pushes content down to start after hero */
+    background-color: #E8ECF4; /* Solid color hides the fixed Spline */
 }
 
-/* --- SECTION 2: ABOUT --- */
 .section {
     min-height: 100vh;
-    width: 100%;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.about {
-    background-color: #E8ECF4; /* Solid background to cover the hero */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* MARQUEE ANIMATIONS */
-.marquee-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    padding: 4rem 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem;
-    opacity: 0.04; /* Subtle background text */
-    pointer-events: none;
+    position: relative;
+}
+
+/* MARQUEE TEXT (Alternating) */
+.marquee-background {
+    position: absolute;
+    width: 100%;
+    opacity: 0.05;
     z-index: 0;
+    pointer-events: none;
 }
 
 .marquee-row {
-    white-space: nowrap;
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 900;
-    color: #000;
+    white-space: nowrap;
     display: flex;
+    margin-bottom: 1rem;
 }
 
-/* Left to Right vs Right to Left */
-.scroll-left { animation: slideLeft 25s linear infinite; }
-.scroll-right { animation: slideRight 25s linear infinite; }
+.left-to-right { animation: moveRight 30s linear infinite; }
+.right-to-left { animation: moveLeft 30s linear infinite; }
 
-@keyframes slideLeft {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
+@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-@keyframes slideRight {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0); }
-}
-
-/* CARD & CONTENT */
+/* ABOUT CARD */
 .about-content {
-    z-index: 10;
     display: flex;
     align-items: center;
-    gap: 3rem;
-    flex-wrap: wrap; /* Good for mobile */
     justify-content: center;
+    gap: 3rem;
+    z-index: 1;
 }
 
 .card {
     background: white;
     padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     width: 320px;
     height: 220px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.char-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Prevents stretching */
-}
+.char-img { width: 100%; height: 100%; object-fit: contain; }
 
-.about-text h2 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    text-transform: lowercase;
-}
-
-.about-text p {
-    font-size: 0.9rem;
-    max-width: 250px;
-    line-height: 1.4;
-}
-
-/* --- SECTION 3: PORTFOLIO --- */
-.portfolio {
-    background-color: #E8ECF4;
-    padding-top: 4rem;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    margin-left: 2rem;
-    font-weight: bold;
-}
-
+/* PORTFOLIO */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    padding: 0 2rem;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.project-item {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.project-item:hover { transform: translateY(-5px); }
-
-.thumb-gradient {
+.thumb {
     width: 100%;
-    height: 220px;
-    border-radius: 8px;
-    background: radial-gradient(circle at center, #A9EBE5 0%, #6195D8 100%);
+    height: 200px;
+    border-radius: 12px;
+    background: radial-gradient(circle, #A9EBE5 0%, #6195D8 100%);
     margin-bottom: 10px;
 }
 
-/* --- FOOTER --- */
-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 5rem 3rem;
-    background-color: #E8ECF4;
-    font-size: 0.85rem;
-}
-.footer-col h4 { margin-bottom: 1rem; font-weight: bold; }
-.footer-col p { color: #555; line-height: 1.6; }
-
-/* --- ANIMATIONS (Left-to-Center) --- */
+/* FADE ANIMATIONS */
 .fade-trigger {
     opacity: 0;
-    transform: translateX(-60px); /* Start off-screen to left */
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease */
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
 }
 
 .fade-trigger.active {
@@ -213,12 +120,7 @@ footer {
     transform: translateX(0);
 }
 
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
 
-/* Mobile Adjustment */
-@media (max-width: 768px) {
-    .main-title { font-size: 2.5rem; }
-    .about-content { flex-direction: column; text-align: center; }
-}
-
+footer { display: flex; justify-content: space-between; padding: 4rem; }
