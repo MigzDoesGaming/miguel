@@ -1,35 +1,32 @@
-/* 1. IMPORT GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&display=swap');
 
-/* 2. CORE RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
     background-color: #E8ECF4;
     overflow-x: hidden;
-    color: #1a1a1a;
 }
 
-/* --- HERO SECTION --- */
+/* --- HERO --- */
 .hero-section {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     z-index: 1;
-    background-color: #E8ECF4;
 }
 .spline-container { width: 100%; height: 100%; }
+.badge-hide { position: absolute; bottom: 0; right: 0; width: 150px; height: 45px; background: #E8ECF4; z-index: 5; }
 
 /* --- CONTENT WRAPPER --- */
 .content-wrapper {
     position: relative;
     z-index: 10;
-    margin-top: 150vh; 
+    margin-top: 150vh;
     background-color: #E8ECF4;
     opacity: 0;
-    filter: blur(30px); 
-    box-shadow: 0 -120px 100px 30px #E8ECF4; 
+    filter: blur(30px);
+    box-shadow: 0 -120px 100px 30px #E8ECF4;
     transition: filter 0.1s linear, opacity 0.1s linear;
 }
 
@@ -40,10 +37,13 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 100px 0;
 }
 
-/* --- ABOUT SECTION --- */
+/* --- ABOUT & TILTED TEXT --- */
+.section.about {
+    overflow: hidden; /* CRITICAL: Stops the tilt from overlapping Portfolio */
+}
+
 .about-content {
     display: flex;
     align-items: center;
@@ -53,125 +53,90 @@ body {
     padding: 0 40px;
 }
 
-.char-img {
-    max-width: 400px;
-    border-radius: 24px;
-    border: 3px solid #000;
-}
+.char-img { max-width: 400px; border-radius: 24px; border: 3px solid #000; }
+.name-title { font-size: 2.2rem; font-weight: 800; text-transform: lowercase; margin-bottom: 12px; }
+.bio-paragraph { font-size: 18px; font-weight: 500; line-height: 1.5; color: #333; max-width: 450px; }
 
-.name-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    text-transform: lowercase;
-    margin-bottom: 12px;
-}
-
-.bio-paragraph {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: #333;
-    max-width: 450px;
-}
-
-/* --- TILTED MARQUEE --- */
 .marquee-background {
     position: absolute;
-    width: 200%; 
-    left: -50%;
+    width: 250%; /* Large width for the 40deg tilt */
+    left: -75%;
     transform: rotate(-40deg);
     z-index: 1;
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .marquee-row {
     font-size: 6rem;
     font-weight: 900;
     white-space: nowrap;
-    display: flex;
     color: #000;
     opacity: 0.05;
+    line-height: 1.1;
 }
 
-/* --- PORTFOLIO SECTION (MATCHING SECOND PIC) --- */
+/* --- PORTFOLIO (BIG SCALE) --- */
 .portfolio {
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    padding: 100px 0;
 }
 
 .portfolio-container {
     width: 100%;
-    max-width: 1300px; /* Made even wider for bigger items */
+    max-width: 1300px;
     padding: 0 50px;
 }
 
 .section-title {
-    font-size: 4rem; /* Massive title */
+    font-size: 4rem;
     font-weight: 900;
     text-transform: lowercase;
-    text-align: left; /* Moves "portfolio" to the left side */
-    width: 100%;
-    margin-bottom: 40px;
-    letter-spacing: -4px;
+    text-align: left;
+    margin-bottom: 50px;
+    letter-spacing: -3px;
 }
 
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two big columns */
-    gap: 60px 50px; /* Large spacing */
-    width: 100%;
-}
-
-.project-item {
-    cursor: pointer;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px 40px;
 }
 
 .thumb {
     width: 100%;
-    aspect-ratio: 16 / 11; /* Bigger presence */
-    border-radius: 30px; /* Softer corners */
+    aspect-ratio: 16 / 11;
+    border-radius: 30px;
     margin-bottom: 20px;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    background: #ccd4e0;
 }
 
-.project-item:hover .thumb {
-    transform: scale(1.03) translateY(-10px);
-}
+.project-item:hover .thumb { transform: scale(1.03) translateY(-10px); }
+.project-item h3 { font-size: 1.8rem; font-weight: 800; text-transform: lowercase; }
 
-.project-item h3 {
-    font-size: 1.8rem; /* Bigger project names */
-    font-weight: 800;
-    text-transform: lowercase;
-    margin-left: 5px;
-}
+/* Gradients */
+.anim-bg { background: linear-gradient(135deg, #A9EBE5 0%, #6195D8 100%); }
+.illu-bg { background: linear-gradient(135deg, #FFD1FF 0%, #FA8072 100%); }
+.graph-bg { background: linear-gradient(135deg, #FFF4A3 0%, #FF8C00 100%); }
+.model-bg { background: linear-gradient(135deg, #E0E0E0 0%, #2c3e50 100%); }
 
-/* --- FADE ANIMATIONS --- */
+/* --- ANIMATIONS --- */
+@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.left-to-right span { display: inline-block; animation: moveRight 40s linear infinite; }
+.right-to-left span { display: inline-block; animation: moveLeft 40s linear infinite; }
+
 .fade-trigger {
     opacity: 0;
     transform: translateY(40px);
     transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.fade-trigger.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+.fade-trigger.active { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: 0.2s; }
 .delay-2 { transition-delay: 0.4s; }
 
-/* --- FOOTER --- */
-footer { 
-    display: flex; justify-content: space-between; 
-    padding: 120px 60px; width: 100%; 
-    max-width: 1300px; margin: 0 auto; 
-}
-
-@media (max-width: 900px) {
-    .portfolio-grid { grid-template-columns: 1fr; }
-    .section-title { font-size: 3rem; }
-    .about-content { flex-direction: column; text-align: center; }
-}
+footer { display: flex; justify-content: space-between; padding: 100px 60px; max-width: 1300px; margin: 0 auto; width: 100%; }
