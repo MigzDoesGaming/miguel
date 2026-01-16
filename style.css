@@ -90,10 +90,17 @@ body {
 /* --- MARQUEE BACKGROUND --- */
 .marquee-background {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers all rows vertically */
     opacity: 0.08;
     z-index: 1;
     pointer-events: none;
+    overflow: hidden; /* Prevents rows from creating scrollbars */
 }
 
 .marquee-row {
@@ -146,6 +153,7 @@ footer { display: flex; justify-content: space-between; padding: 6rem 4rem; widt
 @media (max-width: 900px) {
     .about-content { flex-direction: column; text-align: center; }
 }
+
 
 
 
