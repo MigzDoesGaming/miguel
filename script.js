@@ -7,32 +7,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollVal = window.scrollY;
         const winHeight = window.innerHeight;
         
-        // --- 1. SHOE EXIT ---
+        // 1. Shoe Exit Logic
         heroSection.style.transform = `translateY(-${scrollVal * 0.4}px)`;
         let shoeOpacity = 1 - (scrollVal / (winHeight * 0.5));
         splineHero.style.opacity = Math.max(0, shoeOpacity);
         splineHero.style.filter = `blur(${(scrollVal / winHeight) * 20}px)`;
 
-        // --- 2. WHOLE SECTION BLUR FADE (Breathing Space Fix) ---
-        // We start the fade in a bit later to give the shoe room to exit
-        const fadeStart = winHeight * 0.4; 
-        const fadeEnd = winHeight * 1.1;
+        // 2. Content Wrapper Entry (Blur + Opacity)
+        // Adjust these numbers if the "breathing space" feels too long or short
+        const fadeStart = winHeight * 0.5; 
+        const fadeEnd = winHeight * 1.2;
         
         let progress = (scrollVal - fadeStart) / (fadeEnd - fadeStart);
         let clamped = Math.max(0, Math.min(1, progress));
 
         if (scrollVal > fadeStart) {
-            // Apply blur and opacity to the WHOLE wrapper
-            let blurVal = 30 - (clamped * 30);
-            contentWrapper.style.filter = `blur(${blurVal}px)`;
             contentWrapper.style.opacity = clamped;
+            contentWrapper.style.filter = `blur(${30 - (clamped * 30)}px)`;
         } else {
-            contentWrapper.style.filter = `blur(30px)`;
             contentWrapper.style.opacity = 0;
+            contentWrapper.style.filter = `blur(30px)`;
         }
     });
 
-    // Intersection Observer for Portfolio and Footer (standard pop-in)
+    // 3. Portfolio & Footer Observers
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
