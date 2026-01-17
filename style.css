@@ -158,7 +158,7 @@ footer {
     display: flex;
     justify-content: flex-start; /* Aligns columns to the left */
     gap: 15%; /* Creates the wide spacing seen in your reference pic */
-    padding: 120px 10% 180px -15%; /* Adjust padding to match your portfolio container */
+    padding: 120px 10% 180px 5%; /* Adjust padding to match your portfolio container */
     max-width: 1300px;
     margin: 0 auto;
     width: 100%;
@@ -201,6 +201,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
