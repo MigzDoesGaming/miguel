@@ -212,6 +212,16 @@ footer {
     color: #333;
 }
 
+.footer-line {
+    border: none;             /* Removes the default '3D' carved look */
+    height: 1px;              /* Sets the thickness of the line */
+    background-color: #000;   /* Sets the color (Black) */
+    opacity: 0.1;             /* Makes it subtle/light gray */
+    width: 100%;              /* Makes it stretch across the footer */
+    margin-bottom: 60px;      /* Creates space between line and text */
+    grid-column: 1 / -1;      /* If footer is a grid, this makes it span all columns */
+}
+
 /* --- ANIMATIONS --- */
 @keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 @keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -234,3 +244,4 @@ footer {
     .section-title { font-size: 3rem; }
     footer { flex-direction: column; gap: 40px; padding-left: 5%; }
 }
+
