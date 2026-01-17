@@ -13,7 +13,6 @@ html, body {
     background-color: #E8ECF4;
     overflow-x: hidden;
     color: #1a1a1a;
-    /* Consistency: changed all to cursor1.png as per your body tag */
     cursor: url('cursor1.png'), auto !important;
 }
 
@@ -21,40 +20,12 @@ body:active {
     cursor: url('cursor2.png'), auto !important;
 }
 
-/* Force cursor on all interactive elements */
-a, button, .project-item, .thumb {
+/* Force cursor on interactive elements */
+a, button, .project-item, .thumb, .close-modal, #next-page, #prev-page {
     cursor: url('cursor1.png'), pointer !important;
 }
 
-a:active, .project-item:active {
-    cursor: url('cursor2.png'), pointer !important;
-}
-
-/* --- HERO (SPLINE) CURSOR FIX --- */
-.hero-section, 
-.spline-container, 
-#spline-hero iframe {
-    cursor: url('cursor1.png'), auto !important;
-}
-
-.hero-section:active, 
-#spline-hero iframe:active {
-    cursor: url('cursor2.png'), auto !important;
-}
-
-/* This allows the cursor to 'touch' the spline iframe through the protective layer */
-.badge-hide { 
-    position: absolute; 
-    bottom: 0; 
-    right: 0; 
-    width: 150px; 
-    height: 45px; 
-    background: #E8ECF4; 
-    z-index: 5; 
-    pointer-events: none; /* Allows cursor to pass through to Spline */
-}
-
-/* --- HERO LAYOUT --- */
+/* --- HERO & SPLINE --- */
 .hero-section {
     position: fixed;
     top: 0; left: 0;
@@ -64,7 +35,16 @@ a:active, .project-item:active {
 
 .spline-container { width: 100%; height: 100%; }
 
-/* --- PAGE FADE WRAPPER --- */
+.badge-hide { 
+    position: absolute; 
+    bottom: 0; right: 0; 
+    width: 150px; height: 45px; 
+    background: #E8ECF4; 
+    z-index: 5; 
+    pointer-events: none; 
+}
+
+/* --- CONTENT WRAPPER --- */
 .content-wrapper {
     position: relative;
     z-index: 10;
@@ -85,32 +65,7 @@ a:active, .project-item:active {
     position: relative;
 }
 
-/* --- ABOUT SECTION --- */
-.section.about {
-    overflow: hidden; 
-}
-
-.about-content {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    z-index: 5;
-    max-width: 1100px;
-    padding: 0 40px;
-}
-
-.char-img { max-width: 400px; border-radius: 24px; border: 3px solid #000; }
-.name-title { font-size: 2.2rem; font-weight: 800; text-transform: lowercase; margin-bottom: 12px; }
-
-.bio-paragraph { 
-    font-size: 18px; 
-    font-weight: 500; 
-    line-height: 1.5; 
-    color: #333; 
-    max-width: 450px; 
-}
-
-/* --- MARQUEE BACKGROUND --- */
+/* --- MARQUEE --- */
 .marquee-background {
     position: absolute;
     width: 250%; 
@@ -129,14 +84,11 @@ a:active, .project-item:active {
     line-height: 1.1;
 }
 
-.marquee-row span { display: inline-block; }
-
-/* --- PORTFOLIO --- */
+/* --- PORTFOLIO GRID --- */
 .portfolio {
     flex-direction: column;
     justify-content: flex-start;
     padding: 120px 0;
-    align-items: center;
 }
 
 .portfolio-container {
@@ -150,16 +102,14 @@ a:active, .project-item:active {
     font-size: 4.5rem; 
     font-weight: 700;
     text-transform: lowercase;
-    text-align: left;
     margin-bottom: 50px;
     letter-spacing: -2px;
-    width: 100%;
 }
 
 .portfolio-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 120px 120px;
+    gap: 120px;
 }
 
 .thumb {
@@ -170,61 +120,144 @@ a:active, .project-item:active {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 
 .project-item:hover .thumb { transform: scale(1.03) translateY(-10px); }
-.project-item h3 { font-size: 1.2rem; font-weight: 600; text-transform: lowercase; }
 
-/* --- PORTFOLIO IMAGES --- */
+/* Thumb Images */
 .project-item:nth-child(1) .thumb { background-image: url('1.png'); }
 .project-item:nth-child(2) .thumb { background-image: url('2.png'); }
 .project-item:nth-child(3) .thumb { background-image: url('3.png'); }
 .project-item:nth-child(4) .thumb { background-image: url('4.png'); }
 
-/* --- FOOTER (Original Layout) --- */
+/* --- FOOTER --- */
 footer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
     gap: 15%; 
-    padding: 120px 0% 120px 0%; /* Kept at 0% left as requested */
+    padding: 120px 0;
     max-width: 1300px;
     margin: 0 auto;
-    width: 100%;
-}
-
-.footer-col {
-    max-width: 1000px; 
-}
-
-.footer-col h4 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-    color: #1a1a1a;
-}
-
-.footer-col p {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.6;
-    color: #333;
 }
 
 .footer-line {
     width: 100%;
-    border: none;             /* Removes the default '3D' carved look */
-    height: 1px;              /* Sets the thickness of the line */
-    background-color: #000;   /* Sets the color (Black) */
-    opacity: 0.1;             /* Makes it subtle/light gray */
-    width: 100%;              /* Makes it stretch across the footer */
-    margin-bottom: 60px;      /* Creates space between line and text */
-    grid-column: 1 / -1;      /* If footer is a grid, this makes it span all columns */
+    border: none;
+    height: 1px;
+    background-color: #000;
+    opacity: 0.1;
+    margin-bottom: 60px;
+}
+
+/* --- MODAL (PNG FOLDER FOCUS) --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+#modal-folder-header {
+    width: auto;
+    max-width: 100%;
+    max-height: 85vh;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5)); 
+}
+
+/* --- GALLERY INSIDE FOLDER --- */
+.folder-inside-content {
+    position: absolute;
+    top: 50%; /* Center of the folder PNG */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%; /* Constrain work within the 'paper' area */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto; /* Allow button clicks */
+}
+
+#gallery-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gallery-container img {
+    max-width: 100%;
+    height: auto;
+    display: none; /* Hidden until JS adds .active-img */
+    border-radius: 4px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+#gallery-container img.active-img {
+    display: block;
+    animation: pageTurn 0.4s ease-out;
+}
+
+/* Folder Internal Navigation */
+.folder-nav {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+}
+
+#page-number {
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    min-width: 40px;
+    text-align: center;
+}
+
+.folder-nav button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    text-transform: lowercase;
+    transition: opacity 0.2s;
+}
+
+.folder-nav button:hover { opacity: 0.7; }
+
+.close-modal {
+    position: fixed;
+    top: 30px; right: 40px;
+    color: white;
+    font-size: 60px;
+    font-weight: 300;
+    z-index: 2100;
 }
 
 /* --- ANIMATIONS --- */
+@keyframes pageTurn {
+    from { opacity: 0; transform: translateX(20px) rotate(2deg); }
+    to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+
 @keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 @keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -237,85 +270,3 @@ footer {
     transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .fade-trigger.active { opacity: 1; transform: translateY(0); }
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
-
-@media (max-width: 900px) {
-    .portfolio-grid { grid-template-columns: 1fr; }
-    .about-content { flex-direction: column; text-align: center; }
-    .section-title { font-size: 3rem; }
-    footer { flex-direction: column; gap: 40px; padding-left: 5%; }
-}
-
-/* --- MODAL POPUP (PNG ONLY) --- */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker for focus */
-    backdrop-filter: blur(15px);
-    justify-content: center;
-    align-items: center;
-    cursor: url('cursor1.png'), auto !important;
-}
-
-.modal-content {
-    background-color: transparent; /* Removes white background */
-    padding: 0;
-    border: none;                 /* Removes black border */
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 90vw;
-    max-height: 90vh;
-}
-
-#modal-folder-header {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 85vh;
-    display: block;
-    /* This makes the PNG feel like a physical object on the screen */
-    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5)); 
-}
-
-/* This is the secret to adding more images "inside" the folder later */
-.folder-inside-content {
-    position: absolute;
-    top: 55%;  /* Adjust these to align with the "opening" of your PNG */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%; 
-    text-align: center;
-    pointer-events: none; /* Allows clicks to pass through to the modal background to close */
-}
-
-.close-modal {
-    position: fixed;
-    top: 30px;
-    right: 40px;
-    color: white;
-    font-size: 60px;
-    font-weight: 300;
-    cursor: url('cursor1.png'), pointer !important;
-    z-index: 2100;
-    transition: transform 0.3s ease;
-}
-
-.close-modal:hover {
-    transform: rotate(90deg);
-}
-
-/* Modal Open State */
-.modal.active {
-    display: flex;
-}
-
-
-
