@@ -1,45 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
-body {
+/* --- GLOBAL CURSOR --- */
+html, body {
     font-family: 'Inter', sans-serif;
     background-color: #E8ECF4;
     overflow-x: hidden;
     color: #1a1a1a;
-    cursor: url('cursor1.png'), auto;
-}
-body:active {
-    cursor: url('cursor2.png'), auto;
+    /* Consistency: changed all to cursor1.png as per your body tag */
+    cursor: url('cursor1.png'), auto !important;
 }
 
+body:active {
+    cursor: url('cursor2.png'), auto !important;
+}
+
+/* Force cursor on all interactive elements */
+a, button, .project-item, .thumb {
+    cursor: url('cursor1.png'), pointer !important;
+}
+
+a:active, .project-item:active {
+    cursor: url('cursor2.png'), pointer !important;
+}
+
+/* --- HERO (SPLINE) CURSOR FIX --- */
 .hero-section, 
 .spline-container, 
-.badge-hide {
-    cursor: url('cursor.png'), auto !important;
-}
-
-/* Very important: Apply it to the iframe content */
 #spline-hero iframe {
-    cursor: url('cursor.png'), auto !important;
+    cursor: url('cursor1.png'), auto !important;
 }
 
-/* Also ensure the active click state works there too */
 .hero-section:active, 
-.badge-hide:active, 
 #spline-hero iframe:active {
     cursor: url('cursor2.png'), auto !important;
 }
-/* --- HERO (SPLINE) --- */
+
+/* This allows the cursor to 'touch' the spline iframe through the protective layer */
+.badge-hide { 
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    width: 150px; 
+    height: 45px; 
+    background: #E8ECF4; 
+    z-index: 5; 
+    pointer-events: none; /* Allows cursor to pass through to Spline */
+}
+
+/* --- HERO LAYOUT --- */
 .hero-section {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     z-index: 1;
 }
+
 .spline-container { width: 100%; height: 100%; }
-.badge-hide { position: absolute; bottom: 0; right: 0; width: 150px; height: 45px; background: #E8ECF4; z-index: 5; }
 
 /* --- PAGE FADE WRAPPER --- */
 .content-wrapper {
@@ -62,9 +85,9 @@ body:active {
     position: relative;
 }
 
-/* --- ABOUT SECTION & TILTED TEXT --- */
+/* --- ABOUT SECTION --- */
 .section.about {
-    overflow: hidden; /* Clips the background so it doesn't overlap portfolio */
+    overflow: hidden; 
 }
 
 .about-content {
@@ -87,9 +110,10 @@ body:active {
     max-width: 450px; 
 }
 
+/* --- MARQUEE BACKGROUND --- */
 .marquee-background {
     position: absolute;
-    width: 250%; /* Oversized for 40deg tilt */
+    width: 250%; 
     left: -75%;
     transform: rotate(-40deg);
     z-index: 1;
@@ -107,7 +131,7 @@ body:active {
 
 .marquee-row span { display: inline-block; }
 
-/* --- PORTFOLIO (BIG GRID) --- */
+/* --- PORTFOLIO --- */
 .portfolio {
     flex-direction: column;
     justify-content: flex-start;
@@ -117,7 +141,7 @@ body:active {
 
 .portfolio-container {
     width: 100%;
-    max-width: 1600px; /* Big items */
+    max-width: 1600px; 
     padding: 100px 50px;
 }
 
@@ -126,12 +150,11 @@ body:active {
     font-size: 4.5rem; 
     font-weight: 700;
     text-transform: lowercase;
-    text-align: left; /* Aligns to the left side */
+    text-align: left;
     margin-bottom: 50px;
     letter-spacing: -2px;
     width: 100%;
 }
-
 
 .portfolio-grid {
     display: grid;
@@ -145,8 +168,6 @@ body:active {
     border-radius: 20px;
     margin-bottom: 20px;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* ADD THESE */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -155,34 +176,25 @@ body:active {
 .project-item:hover .thumb { transform: scale(1.03) translateY(-10px); }
 .project-item h3 { font-size: 1.2rem; font-weight: 600; text-transform: lowercase; }
 
-/* --- ANIMATIONS --- */
-@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* --- PORTFOLIO IMAGES --- */
+.project-item:nth-child(1) .thumb { background-image: url('1.png'); }
+.project-item:nth-child(2) .thumb { background-image: url('2.png'); }
+.project-item:nth-child(3) .thumb { background-image: url('3.png'); }
+.project-item:nth-child(4) .thumb { background-image: url('4.png'); }
 
-.left-to-right span { animation: moveRight 50s linear infinite; }
-.right-to-left span { animation: moveLeft 50s linear infinite; }
-
-.fade-trigger {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.fade-trigger.active { opacity: 1; transform: translateY(0); }
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
-
+/* --- FOOTER (Original Layout) --- */
 footer {
     display: flex;
-    justify-content: flex-start; /* Aligns columns to the left */
-    gap: 15%; /* Creates the wide spacing seen in your reference pic */
-    padding: 120px 10% 180px 0%; /* Adjust padding to match your portfolio container */
+    justify-content: flex-start;
+    gap: 15%; 
+    padding: 120px 10% 180px 0%; /* Kept at 0% left as requested */
     max-width: 1300px;
     margin: 0 auto;
     width: 100%;
 }
 
 .footer-col {
-    max-width: 1000px; /* Prevents the philosophy text from stretching too wide */
+    max-width: 1000px; 
 }
 
 .footer-col h4 {
@@ -200,46 +212,25 @@ footer {
     color: #333;
 }
 
+/* --- ANIMATIONS --- */
+@keyframes moveRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.left-to-right span { animation: moveRight 50s linear infinite; }
+.right-to-left span { animation: moveLeft 50s linear infinite; }
+
+.fade-trigger {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fade-trigger.active { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
 @media (max-width: 900px) {
     .portfolio-grid { grid-template-columns: 1fr; }
     .about-content { flex-direction: column; text-align: center; }
     .section-title { font-size: 3rem; }
+    footer { flex-direction: column; gap: 40px; padding-left: 5%; }
 }
-
-.project-item:nth-child(1) .thumb { 
-    background-image: url('1.png'); 
-}
-.project-item:nth-child(2) .thumb { 
-    background-image: url('2.png'); 
-}
-.project-item:nth-child(3) .thumb { 
-    background-image: url('3.png'); 
-}
-.project-item:nth-child(4) .thumb { 
-    background-image: url('4.png'); 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
