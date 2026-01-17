@@ -8,6 +8,7 @@ body {
     background-color: #E8ECF4;
     overflow-x: hidden;
     color: #1a1a1a;
+    cursor: url('cursor.png'), auto;
 }
 
 /* --- HERO (SPLINE) --- */
@@ -174,6 +175,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
