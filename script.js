@@ -37,3 +37,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.fade-trigger').forEach(el => observer.observe(el));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById('folder-modal');
+    const modalImg = document.getElementById('modal-folder-header');
+    const closeBtn = document.querySelector('.close-modal');
+
+    // Folder Map: Maps your thumb index to the "Open" image name
+    const folderOpenImages = {
+        1: 'open1.png',
+        2: 'open2.png',
+        3: 'open3.png',
+        4: 'open4.png'
+    };
+
+    // Open Modal when a project-item is clicked
+    document.querySelectorAll('.project-item').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            const folderNum = index + 1;
+            modalImg.src = folderOpenImages[folderNum];
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        });
+    });
+
+    // Close Modal when 'X' is clicked
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+
+    // Close Modal when clicking OUTSIDE the content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
