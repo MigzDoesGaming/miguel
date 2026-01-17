@@ -119,7 +119,7 @@ body:active {
 .portfolio-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 90px 90px;
+    gap: 120px 120px;
 }
 
 .thumb {
@@ -201,6 +201,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
