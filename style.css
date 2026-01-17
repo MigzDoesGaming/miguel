@@ -165,7 +165,7 @@ footer {
 }
 
 .footer-col {
-    max-width: 600px; /* Prevents the philosophy text from stretching too wide */
+    max-width: 800px; /* Prevents the philosophy text from stretching too wide */
 }
 
 .footer-col h4 {
@@ -201,6 +201,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
