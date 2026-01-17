@@ -162,6 +162,19 @@ footer {
     .section-title { font-size: 3rem; }
 }
 
+.project-item:nth-child(1) .thumb { 
+    background-image: url('1.png'); 
+}
+.project-item:nth-child(2) .thumb { 
+    background-image: url('2.png'); 
+}
+.project-item:nth-child(3) .thumb { 
+    background-image: url('3.png'); 
+}
+.project-item:nth-child(4) .thumb { 
+    background-image: url('4.png'); 
+}
+
 
 
 
