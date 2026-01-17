@@ -14,6 +14,23 @@ body:active {
     cursor: url('cursor2.png'), auto;
 }
 
+.hero-section, 
+.spline-container, 
+.badge-hide {
+    cursor: url('cursor.png'), auto !important;
+}
+
+/* Very important: Apply it to the iframe content */
+#spline-hero iframe {
+    cursor: url('cursor.png'), auto !important;
+}
+
+/* Also ensure the active click state works there too */
+.hero-section:active, 
+.badge-hide:active, 
+#spline-hero iframe:active {
+    cursor: url('cursor2.png'), auto !important;
+}
 /* --- HERO (SPLINE) --- */
 .hero-section {
     position: fixed;
@@ -201,6 +218,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
