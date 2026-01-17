@@ -165,11 +165,11 @@ footer {
 }
 
 .footer-col {
-    max-width: 400px; /* Prevents the philosophy text from stretching too wide */
+    max-width: 600px; /* Prevents the philosophy text from stretching too wide */
 }
 
 .footer-col h4 {
-    font-family: 'Istok Web', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 15px;
@@ -201,6 +201,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
