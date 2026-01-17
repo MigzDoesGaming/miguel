@@ -10,6 +10,9 @@ body {
     color: #1a1a1a;
     cursor: url('cursor1.png'), auto;
 }
+body:active {
+    cursor: url('cursor2.png'), auto;
+}
 
 /* --- HERO (SPLINE) --- */
 .hero-section {
@@ -175,6 +178,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
