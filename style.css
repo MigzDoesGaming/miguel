@@ -154,10 +154,33 @@ body:active {
 .delay-1 { transition-delay: 0.2s; }
 .delay-2 { transition-delay: 0.4s; }
 
-footer { 
-    display: flex; justify-content: space-between; 
-    padding: 120px 60px; max-width: 1300px; 
-    margin: 0 auto; width: 100%; 
+footer {
+    display: flex;
+    justify-content: flex-start; /* Aligns columns to the left */
+    gap: 15%; /* Creates the wide spacing seen in your reference pic */
+    padding: 120px 50px; /* Adjust padding to match your portfolio container */
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.footer-col {
+    max-width: 400px; /* Prevents the philosophy text from stretching too wide */
+}
+
+.footer-col h4 {
+    font-family: 'Istok Web', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.footer-col p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #333;
 }
 
 @media (max-width: 900px) {
@@ -178,6 +201,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
