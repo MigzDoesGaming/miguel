@@ -100,7 +100,7 @@ body:active {
 
 .portfolio-container {
     width: 100%;
-    max-width: 1300px; /* Big items */
+    max-width: 1600px; /* Big items */
     padding: 100px 50px;
 }
 
@@ -201,6 +201,7 @@ footer {
 .project-item:nth-child(4) .thumb { 
     background-image: url('4.png'); 
 }
+
 
 
 
