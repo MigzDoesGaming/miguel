@@ -185,6 +185,7 @@ a:active, .project-item:active {
 /* --- FOOTER (Original Layout) --- */
 footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     gap: 15%; 
     padding: 120px 10% 180px 0%; /* Kept at 0% left as requested */
@@ -213,6 +214,7 @@ footer {
 }
 
 .footer-line {
+    width: 100%;
     border: none;             /* Removes the default '3D' carved look */
     height: 1px;              /* Sets the thickness of the line */
     background-color: #000;   /* Sets the color (Black) */
@@ -244,4 +246,5 @@ footer {
     .section-title { font-size: 3rem; }
     footer { flex-direction: column; gap: 40px; padding-left: 5%; }
 }
+
 
